@@ -2,10 +2,10 @@
 title: "Yasmine's website"
 ---
 
-This is a Quarto website.
+Hello and welcome to my website!
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+We will be looking at datasets and trends that we can be derived from them. For more information, feel free to check out the about page!
 
 ```{r}
-1 + 1
+cat("Coding is fun!")
 ```

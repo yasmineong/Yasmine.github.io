@@ -1,0 +1,14 @@
+{
+  "hash": "9526acd879c56037d6f28709d896ec21",
+  "result": {
+    "markdown": "---\ntitle: \"Yasmine's website\"\n---\n\n\nHello and welcome to my website!\n\nWe will be looking at datasets and trends that we can be derived from them. For more information, feel free to check out the about page!\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncat(\"Coding is fun!\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nCoding is fun!\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

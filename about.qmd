@@ -6,7 +6,7 @@ Welcome again!
 
 I am a student trying to use coding to perform data analysis on datasets using the the knowledge I have learnt in my lessons so far. Stay tuned to see what I will be doing...
 
-### Link to Shiny Web App
+### Shiny Web App
 
 <iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
 

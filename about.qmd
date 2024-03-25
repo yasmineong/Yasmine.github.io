@@ -16,6 +16,142 @@ For my analysis, I will be looking at a dataset about cars that was found on Kag
 
 ```{r}
 library(tidyverse)
+new_cars <- read.csv("used_cars_data.csv")
+glimpse(new_cars)
+```
+<br>
+# Tidying data
+
+```{r}
+cars1 <- new_cars %>%
+  separate(Mileage, into = c("Mileage_v", "Mileage_unit"), sep = " ") 
+cars <- cars1 %>%
+  mutate("Engine/CC" = as.numeric(str_remove(Engine, "CC")),
+         "Power/bhp" = as.numeric(str_remove(Power, "bhp")),
+         "Mileage_value" = as.numeric(Mileage_v)
+  ) %>%
+  select(-c(Power, Engine, Mileage_v)) 
+cars <- cars %>%
+  select(Name, Location, Year, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, `Engine/CC`, `Power/bhp`, Seats, New_Price, Price)
+glimpse(cars)
+```
+<br>
+# Analysis
+
+### Time and price in different parts of India
+
+```{r}
+library(tidyverse)
+cars %>%
+  ggplot(aes(x = Year, y = Price)) +
+  geom_line() +
+  facet_wrap(~ Location, nrow = 4)
+```
+<br>
+
+```{r}
+cars %>%
+  ggplot(aes(x = Year, y = Price, colour = Location)) +
+  geom_line() 
+```
+<br>
+
+```{r}
+cars %>%
+  filter(Owner_Type == "Second") %>%
+  ggplot(aes(x = Year, y = Price)) +
+  geom_line() +
+  facet_wrap(~ Location, nrow = 4)
+```
+<br>
+
+```{r}
+cars %>%
+  ggplot(aes(x = Price, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+```
+<br>
+
+```{r}
+cars %>%
+  filter(Fuel_Type == "Electric") %>%
+  ggplot(aes(x = Price)) +
+  geom_density(adjust = 0.5) 
+```
+<br>
+
+```{r}
+cars %>%
+  ggplot(aes(x = Year, fill = Fuel_Type)) +
+  geom_histogram(binwidth = 2, alpha = 0.8)
+```
+<br>
+
+```{r}
+cars %>%
+  ggplot(aes(x = Year, fill = Fuel_Type)) +
+  geom_histogram(binwidth = 2, alpha = 0.8) +
+  facet_wrap(~ Fuel_Type)
+```
+<br>
+
+```{r}
+library(tidyverse)
+cars %>%
+  ggplot(aes(x = Price)) +
+  geom_boxplot()
+```
+<br>
+
+```{r}
+cars %>%
+  filter(Kilometers_Driven <= 4e+06) %>%
+  ggplot(aes(x = Year, y = Kilometers_Driven)) +
+  geom_point() +
+  facet_wrap(~ Location, ncol = 3) +
+  geom_smooth()
+#one outlier from Chennai removed
+```
+<br>
+
+```{r}
+library(tidyverse)
 cars <- read.csv("used_cars_data.csv")
 glimpse(cars)
 ```
+<br>
+
+```{r}
+library(tidyverse)
+cars <- read.csv("used_cars_data.csv")
+glimpse(cars)
+```
+<br>
+
+```{r}
+library(tidyverse)
+cars <- read.csv("used_cars_data.csv")
+glimpse(cars)
+```
+<br>
+
+```{r}
+library(tidyverse)
+cars <- read.csv("used_cars_data.csv")
+glimpse(cars)
+```
+<br>
+
+```{r}
+library(tidyverse)
+cars <- read.csv("used_cars_data.csv")
+glimpse(cars)
+```
+<br>
+
+```{r}
+library(tidyverse)
+cars <- read.csv("used_cars_data.csv")
+glimpse(cars)
+```
+<br>

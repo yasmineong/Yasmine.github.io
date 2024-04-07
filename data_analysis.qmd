@@ -1,0 +1,5 @@
+[Link to New Page](new_page.md)
+
+---
+title: "Data analys"
+---

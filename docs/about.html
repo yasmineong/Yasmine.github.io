@@ -111,7 +111,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#analysis-summary" id="toc-analysis-summary" class="nav-link" data-scroll-target="#analysis-summary">Analysis (summary)</a></li>
   <li><a href="#lemon-market-prices-of-second-hand-cars-in-india" id="toc-lemon-market-prices-of-second-hand-cars-in-india" class="nav-link" data-scroll-target="#lemon-market-prices-of-second-hand-cars-in-india">1. Lemon market: Prices of second-hand cars in India</a></li>
   <li><a href="#carbon-emissions-average-kilometers-driven-in-india" id="toc-carbon-emissions-average-kilometers-driven-in-india" class="nav-link" data-scroll-target="#carbon-emissions-average-kilometers-driven-in-india">2. Carbon emissions? Average kilometers driven in India</a></li>
-  <li><a href="#preferences-in-india" id="toc-preferences-in-india" class="nav-link" data-scroll-target="#preferences-in-india">3. Preferences in India</a></li>
+  <li><a href="#preferences-and-car-usage-in-india" id="toc-preferences-and-car-usage-in-india" class="nav-link" data-scroll-target="#preferences-and-car-usage-in-india">3. Preferences and car usage in India</a></li>
+  <li><a href="#predictors-in-the-market" id="toc-predictors-in-the-market" class="nav-link" data-scroll-target="#predictors-in-the-market">4. Predictors in the market</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -137,10 +138,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Welcome again!</p>
-<p>I am a student trying to use coding to perform data analysis on datasets using the the knowledge I have learnt in my lessons so far. Stay tuned to see what I will be doing…</p>
+<p>Stay tuned to see what I will be doing…</p>
 <section id="dataset" class="level1">
 <h1>Dataset</h1>
 <p>For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.</p>
+<p><strong>Title</strong>: Cars Dataset</p>
+<p><strong>Description</strong>: The Cars Dataset contains information about various car models, including their specifications and pricing details in certain parts of India. It a collection of attributes related to different car models, possibly intended for analysis, modeling, or machine learning tasks related to the automotive industry.</p>
+<p><strong>Attributes</strong>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>.  Brand &amp; Model
+ . Location: Certain cities in India
+ . Year
+ . Kilometers driven
+ . Fuel type
+ . Transmission type
+ . Owner type
+ . Mileage: How many kilometers the vehicle can travel per litre of fuel
+ . Engine: Measured in cubic capacity (CC). It refers to the amount of air and fuel that can be pushed through the cylinders in the engine. In most cases, the bigger the capacity, the more powerful the vehicle.
+ . Power: Measured in brake horsepower (BHP). It refers to the horsepower of the car after accounting for the frictional losses in power from the engine. Generally, a higher BHP means increased speed, strength, and overall capabilities on the road. 
+ . Number of seats
+ . Price: 1 Lakh = 100,000</code></pre>
+</div>
+</div>
+<p><strong>Potential Use Cases</strong>: This dataset could be used for various analytical purposes, including:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>.  Exploratory data analysis (EDA) to understand trends and patterns in the automotive market.
+ . Predictive modeling to estimate car prices based on their specifications.
+ . Classification tasks to predict car types or fuel efficiency based on attributes.
+ . Market research to understand consumer preferences and buying behavior in the automotive industry.
+ . Academic research in fields like transportation engineering, automotive engineering, data science, and machine learning.
+ . Product development
+ . Risk assessment</code></pre>
+</div>
+</div>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -258,12 +290,12 @@ $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.5
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="about_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="about_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
@@ -278,30 +310,16 @@ $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.5
 `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="about_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
 <iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
 <p><br></p>
 </section>
-<section id="preferences-in-india" class="level3">
-<h3 class="anchored" data-anchor-id="preferences-in-india">3. Preferences in India</h3>
+<section id="preferences-and-car-usage-in-india" class="level3">
+<h3 class="anchored" data-anchor-id="preferences-and-car-usage-in-india">3. Preferences and car usage in India</h3>
 <div class="cell">
-<div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_boxplot()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -312,16 +330,41 @@ $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.5
 <p><img src="about_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br></p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
+<p>Maruti seems to be the most popular car brand that Indian consumers go for. Upon further inspection into the prices of the individual car brands, we seem to see a preference for the lowest costing car (Maruti) among the top 10.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="about_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol type="1">
+<li>Preferences for low costs, 5-seater vehicles, lower power and engine vehicles.</li>
+<li>Automatic cars seem to have higher power and engine than manual cars –&gt; More may opt for manual cars since they are of lower power and engine.</li>
+<li>Cars in India do not travel very long distances.</li>
+<li>Most of the histograms are highly skewed, which may lead to some poor performances of certain models.</li>
+</ol>
+</section>
+<section id="predictors-in-the-market" class="level3">
+<h3 class="anchored" data-anchor-id="predictors-in-the-market">4. Predictors in the market</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="about_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol type="1">
+<li><p>Strongest correlation between the power and engine capacity of a car.</p></li>
+<li><p>There is a strong correlation between costs and power of the car –&gt; the higher the BHP, the higher the costs of the car which matches what vehicle analytics say. However, since customers in India tend to go for lower prices, producers need not create so many high-powered cars. Moreover, India’s cities are known for their traffic congestion thus smaller, less powerful engines are practical for navigating these conditions efficient.</p></li>
+<li><p>Relationship of price and engine of a car is also moderately strong. This seems to be in line with India’s taxation policies: they impose higher taxes on cars with larger engines and as a result higher BHP, making such vehicles much more unafforable.</p></li>
+</ol>
+<p>Link for reference: https://www.cars24.com/blog/what-is-bhp-in-cars/</p>
 
 
 </section>

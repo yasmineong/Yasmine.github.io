@@ -2,9 +2,22 @@
 title: "Yasmine's website"
 ---
 
-Hello and welcome to my website!
+Hello and welcome to my Github website!
 
-We will be looking at datasets and trends that we can be derived from them. For more information, feel free to check out the about page!
+I'm Yasmine, an NUS undergraduate, and I'm thrilled to have you here on my website dedicated to exploring and analysing data. Whether you're a fellow data enthusiast, a curious learner about what we do for exploratory data analysis, or someone interested in gaining insights from data, you're in the right place.
+
+In this course, NM2207, the skills we have picked up are abundant and we are now tasked to examine the stories that data can tell us. That's why I created this space to share my exploratory data analysis journey with you!
+
+Through the power of exploratory data analysis (EDA), we'll dive deep into a particular dataset about used cars in India, uncovering hidden patterns, trends, and relationships. From interactive visualizations to data-driven narratives, I'll be sharing insights derived from my analyses.
+```{r, out.height= "600px",out.width= "800px",echo=F,eval=TRUE}
+knitr::include_graphics("data.png")
+```
+
+I invite you to immerse yourself in the world of data analysis and storytelling. Take a moment to interact with the visualisations, explore the data yourself, and let the insights guide you on an enlightening journey.
+
+Once again, thank you for joining me on this adventure. What are you waiting for? Let's dive in and uncover the stories hidden within the data together! 
+
+Check out the "About" page ----->
 
 ```{r}
 cat("Coding is fun!")

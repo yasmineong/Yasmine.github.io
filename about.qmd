@@ -4,13 +4,54 @@ title: "About"
 
 Welcome again!
 
-I am a student trying to use coding to perform data analysis on datasets using the the knowledge I have learnt in my lessons so far. Stay tuned to see what I will be doing...
+Stay tuned to see what I will be doing...
 
 # Dataset
 
 For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.
 
-```{r, echo = F, eval = T}
+
+**Title**: Cars Dataset
+
+**Description**:
+The Cars Dataset contains information about various car models, including their specifications and pricing details in certain parts of India. It a collection of attributes related to different car models, possibly intended for analysis, modeling, or machine learning tasks related to the automotive industry.
+
+**Attributes**:
+```{r, echo = F, eval = T} 
+bullet_list <- c(
+  " Brand & Model",
+  "Location: Certain cities in India",
+  "Year",
+  "Kilometers driven",
+  "Fuel type",
+  "Transmission type",
+  "Owner type",
+  "Mileage: How many kilometers the vehicle can travel per litre of fuel",
+  "Engine: Measured in cubic capacity (CC). It refers to the amount of air and fuel that can be pushed through the cylinders in the engine. In most cases, the bigger the capacity, the more powerful the vehicle.",
+  "Power: Measured in brake horsepower (BHP). It refers to the horsepower of the car after accounting for the frictional losses in power from the engine. Generally, a higher BHP means increased speed, strength, and overall capabilities on the road. ",
+  "Number of seats",
+  "Price: 1 Lakh = 100,000"
+)
+cat(paste(". ", bullet_list, "\n", sep = ""))
+```
+
+**Potential Use Cases**:
+This dataset could be used for various analytical purposes, including:
+```{r, echo = F, eval = T} 
+bullet_list <- c(
+  " Exploratory data analysis (EDA) to understand trends and patterns in the automotive market.",
+  "Predictive modeling to estimate car prices based on their specifications.",
+  "Classification tasks to predict car types or fuel efficiency based on attributes.",
+  "Market research to understand consumer preferences and buying behavior in the automotive industry.",
+  "Academic research in fields like transportation engineering, automotive engineering, data science, and machine learning.",
+  "Product development",
+  "Risk assessment"
+  )
+cat(paste(". ", bullet_list, "\n", sep = ""))
+```
+
+
+```{r, echo = F}
 library(tidyverse)
 ```
 
@@ -115,7 +156,7 @@ cars %>%
 ```
 <br>
 
-### 3. Preferences in India 
+### 3. Preferences and car usage in India 
 
 ```{r, echo = F}
 library(patchwork)
@@ -190,6 +231,7 @@ plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot_layout(ncol = 2)
 <br>
 
 ```{r, echo = F}
+library(patchwork)
 market_share <- cars %>%
   group_by(Brand) %>%
   summarise(count = n()) %>%
@@ -203,13 +245,11 @@ pie(market_share$market_share,
     font = 3,
     cex = 0.8)
 ```
-
-
 ```{r, echo = F}
 cars_summary <- cars %>%
   group_by(Brand) %>%
-  summarize(Count = n()) %>%
-  arrange(desc(Count))
+  summarise(Count = n()) %>%
+  arrange(desc(Count)) %>%
 
 top_10_brands <- cars_summary %>%
   head(10) %>%
@@ -227,6 +267,54 @@ ggplot(cars, aes(x = Price, y = Brand)) +
 ```
 <br>
 
+Maruti seems to be the most popular car brand that Indian consumers go for. Upon further inspection into the prices of the individual car brands, we seem to see a preference for the lowest costing car (Maruti) among the top 10.
+
+```{r, echo = F}
+graph1 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = Price, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph2 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = Car_age, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph3 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = Kilometers_Driven, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph4 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = Mileage_value, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph5 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = `Engine/CC`, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph6 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = `Power/bhp`, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph7 <- cars %>%
+  na.omit() %>%
+  ggplot(aes(x = Seats, fill = Transmission)) +
+  geom_density(adjust = 0.5) 
+
+graph1 + graph2 + graph3 + graph4 + graph5 + graph6 + graph7 + plot_layout(ncol = 2)
+```
+
+1. Preferences for low costs, 5-seater vehicles, lower power and engine vehicles.
+2. Automatic cars seem to have higher power and engine than manual cars --> More may opt for manual cars since they are of lower power and engine.
+3. Cars in India do not travel very long distances.
+4. Most of the histograms are highly skewed, which may lead to some poor performances of certain models.
+
+### 4. Predictors in the market
+
 ```{r, echo = F}
 library(ggcorrplot)
 numerical_variables <- cars %>%
@@ -242,11 +330,11 @@ ggcorrplot(cor(numerical_variables),
            title = "Correlation Heatmap of Numerical variables")
 
 ```
-<br>
 
-```{r, echo = F}
-cars %>%
-  ggplot(aes(x = Price, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
-```
-<br>
+1. Strongest correlation between the power and engine capacity of a car.
+
+2. There is a strong correlation between costs and power of the car --> the higher the BHP, the higher the costs of the car which matches what vehicle analytics say. However, since customers in India tend to go for lower prices, producers need not create so many high-powered cars. Moreover, India's cities are known for their traffic congestion thus smaller, less powerful engines are practical for navigating these conditions efficient.
+
+3. Relationship of price and engine of a car is also moderately strong. This seems to be in line with India's taxation policies: they impose higher taxes on cars with larger engines and as a result higher BHP, making such vehicles much more unafforable.
+
+Link for reference: https://www.cars24.com/blog/what-is-bhp-in-cars/

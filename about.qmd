@@ -6,152 +6,247 @@ Welcome again!
 
 I am a student trying to use coding to perform data analysis on datasets using the the knowledge I have learnt in my lessons so far. Stay tuned to see what I will be doing...
 
-### Shiny Web App
-
-<iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
-
 # Dataset
 
 For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.
 
-```{r}
+```{r, echo = F, eval = T}
 library(tidyverse)
+```
+
+```{r, echo = F}
 new_cars <- read.csv("used_cars_data.csv")
 glimpse(new_cars)
 ```
-<br>
+
 # Tidying data
 
-```{r}
+```{r, echo = F}
 cars1 <- new_cars %>%
-  separate(Mileage, into = c("Mileage_v", "Mileage_unit"), sep = " ") 
-cars <- cars1 %>%
+  separate(Mileage, into = c("Mileage_v", "Mileage_unit"), sep = " ")
+
+cars2 <- cars1 %>%
+  separate(Name, into = c("Brand", "Model"), sep = " ", extra = "merge") %>%
+  mutate(Brand = case_when(
+    Brand == "ISUZU" ~ "Isuzu",
+    Brand == "Land" ~ "Land Rover",
+    TRUE ~ Brand
+  ))
+
+cars <- cars2 %>%
   mutate("Engine/CC" = as.numeric(str_remove(Engine, "CC")),
          "Power/bhp" = as.numeric(str_remove(Power, "bhp")),
-         "Mileage_value" = as.numeric(Mileage_v)
+         "Mileage_value" = as.numeric(Mileage_v), 
+         "Car_age" =  year(Sys.Date()) - Year
   ) %>%
   select(-c(Power, Engine, Mileage_v)) 
+
 cars <- cars %>%
-  select(Name, Location, Year, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, `Engine/CC`, `Power/bhp`, Seats, New_Price, Price)
+  select(Brand, Model, Location, Year, Car_age, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, `Engine/CC`, `Power/bhp`, Seats, New_Price, Price)
+
 glimpse(cars)
 ```
-<br>
-# Analysis
 
-### Time and price in different parts of India
 
-```{r}
+### Analysis (summary)
+
+```{r, echo = F}
 library(tidyverse)
-cars %>%
-  ggplot(aes(x = Year, y = Price)) +
-  geom_line() +
-  facet_wrap(~ Location, nrow = 4)
+summary(cars)
 ```
 <br>
 
-```{r}
-cars %>%
-  ggplot(aes(x = Year, y = Price, colour = Location)) +
-  geom_line() 
-```
-<br>
+### 1. Lemon market: Prices of second-hand cars in India 
 
-```{r}
+```{r, echo = F}
+library(lubridate)
+library(stringr)
 cars %>%
   filter(Owner_Type == "Second") %>%
+  mutate(Year = ym(str_c(Year, "-01"))) %>%
+  na.omit() %>%
+  group_by(Location, Year) %>%
+  summarise(Price = mean(Price, na.rm = T)) %>%
   ggplot(aes(x = Year, y = Price)) +
   geom_line() +
-  facet_wrap(~ Location, nrow = 4)
+  labs(title = "Prices of second hand cars in different parts of India against time") +
+  facet_wrap(~ Location, nrow = 4, scales = "free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 60, size = 7, vjust = 0.5))
+
+```
+
+
+```{r, echo = F}
+cars %>%
+  filter(Owner_Type == "Second") %>%
+  mutate(Year = ym(str_c(Year, "-01"))) %>%
+  na.omit() %>%
+  group_by(Year) %>%
+  summarise(Price = mean(Price, na.rm = T)) %>%
+  ggplot(aes(x = Year, y = Price)) +
+  geom_line() +
+  geom_point(colour = "red") +
+  labs(title = "Overall prices of second hand cars in India against time") +
+  theme_bw() 
 ```
 <br>
 
-```{r}
+### 2. Carbon emissions? Average kilometers driven in India
+
+One outlier from Chennai removed
+```{r, echo = F}
+cars %>%
+  filter(Kilometers_Driven <= 4e+06) %>%
+  mutate(Year = ym(str_c(Year, "-01"))) %>%
+  na.omit() %>%
+  group_by(Year, Location) %>%
+  summarise(Ave_km_driven = mean(Kilometers_Driven, na.rm = T)) %>%
+  ggplot(aes(x = Year, y = Ave_km_driven)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(title = "Graph of average kilometers driven in each part of India against time",
+       x = "Year",
+       y = "Average kilometers driven")
+```
+<br>
+```{=html}
+<iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
+```
+<br>
+
+### 3. Preferences in India 
+
+```{r, echo = F}
+library(patchwork)
+plot1 <- cars %>%
+  ggplot(aes(x = Fuel_Type)) +
+  geom_bar(fill = "#0AE1FB") +
+  labs(title = "Count of cars per fuel type",
+       x = "Fuel type",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8))
+
+plot2 <- cars %>%
+  ggplot(aes(x = Transmission)) +
+  geom_bar(fill = "red") +
+  labs(title = "Count of cars per transmission type",
+       x = "Transmission type",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8))
+
+plot3 <- cars %>%
+  ggplot(aes(x = Owner_Type)) +
+  geom_bar(fill = "#0AFBBD") +
+  labs(title = "Count of cars per owner type",
+       x = "Owner type",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8))
+
+plot4 <- cars %>%
+  ggplot(aes(x = Brand)) +
+  geom_bar(fill = "#FAA4E8") +
+  labs(title = "Count of cars per brand",
+       x = "Brands",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8),
+         axis.text.x = element_text(angle = 45, size = 5, vjust = 0.5))
+
+plot5 <- cars %>%
+  count(Model) %>%
+  arrange(desc(n)) %>%
+  head(10) %>%
+  ggplot(aes(x = Model, y = n)) +
+  geom_col(fill = "Black") +
+  labs(title = "Count of cars per (top 10) model",
+       x = "Models",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8),
+         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5))
+
+plot6 <- cars %>%
+  ggplot(aes(x = Location)) +
+  geom_bar(fill = "#F5B041") +
+  labs(title = "Count of cars per location",
+       x = "Location",
+       y = "Count") +
+   theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8),
+         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5))
+
+plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot_layout(ncol = 2) 
+```
+<br>
+
+```{r, echo = F}
+market_share <- cars %>%
+  group_by(Brand) %>%
+  summarise(count = n()) %>%
+  mutate(market_share = count / sum(count) * 100) %>%
+  arrange(desc(market_share)) %>%
+  head(10)
+pie(market_share$market_share, 
+    labels = paste(market_share$Brand, ": ", round(market_share$market_share, 2), "%"), 
+    main = "Market Share Analysis by Car Brand (Top 10)",
+    col = c("#004BF8", "#0080F8", "#00A9F8", "#02CEF7", "#02E8F7", "#A3F7FF", "#A3AEFF", "#C489FF", "#B603FF", "#6C03BE"),
+    font = 3,
+    cex = 0.8)
+```
+
+
+```{r, echo = F}
+cars_summary <- cars %>%
+  group_by(Brand) %>%
+  summarize(Count = n()) %>%
+  arrange(desc(Count))
+
+top_10_brands <- cars_summary %>%
+  head(10) %>%
+  pull(Brand)
+
+cars$Top_10 <- ifelse(cars$Brand %in% top_10_brands, "Top 10", "Others")
+
+ggplot(cars, aes(x = Price, y = Brand)) +
+  geom_boxplot() +
+  facet_wrap(~ Top_10, scales = "free_y") +
+  labs(title = "Price Ranges for Each Car Brand", 
+       x = "Price", 
+       y = "Brand") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+<br>
+
+```{r, echo = F}
+library(ggcorrplot)
+numerical_variables <- cars %>%
+  na.omit() %>%
+  select(Price, Car_age, Kilometers_Driven, Mileage_value, `Engine/CC`, `Power/bhp`, Seats) 
+
+ggcorrplot(cor(numerical_variables),
+           hc.order = TRUE,  
+           lab = TRUE,
+           lab_size = 2,
+           outline.color = "black",  # Color of the outline
+           colors = c("blue", "white", "red"),  # Color palette
+           title = "Correlation Heatmap of Numerical variables")
+
+```
+<br>
+
+```{r, echo = F}
 cars %>%
   ggplot(aes(x = Price, fill = Transmission)) +
   geom_density(adjust = 0.5) 
-```
-<br>
-
-```{r}
-cars %>%
-  filter(Fuel_Type == "Electric") %>%
-  ggplot(aes(x = Price)) +
-  geom_density(adjust = 0.5) 
-```
-<br>
-
-```{r}
-cars %>%
-  ggplot(aes(x = Year, fill = Fuel_Type)) +
-  geom_histogram(binwidth = 2, alpha = 0.8)
-```
-<br>
-
-```{r}
-cars %>%
-  ggplot(aes(x = Year, fill = Fuel_Type)) +
-  geom_histogram(binwidth = 2, alpha = 0.8) +
-  facet_wrap(~ Fuel_Type)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars %>%
-  ggplot(aes(x = Price)) +
-  geom_boxplot()
-```
-<br>
-
-```{r}
-cars %>%
-  filter(Kilometers_Driven <= 4e+06) %>%
-  ggplot(aes(x = Year, y = Kilometers_Driven)) +
-  geom_point() +
-  facet_wrap(~ Location, ncol = 3) +
-  geom_smooth()
-#one outlier from Chennai removed
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
-```
-<br>
-
-```{r}
-library(tidyverse)
-cars <- read.csv("used_cars_data.csv")
-glimpse(cars)
 ```
 <br>

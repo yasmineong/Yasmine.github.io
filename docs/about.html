@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -139,10 +105,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#shiny-web-app" id="toc-shiny-web-app" class="nav-link active" data-scroll-target="#shiny-web-app">Shiny Web App</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link" data-scroll-target="#tidying-data">Tidying data</a>
   <ul class="collapse">
-  <li><a href="#time-and-price-in-different-parts-of-india" id="toc-time-and-price-in-different-parts-of-india" class="nav-link" data-scroll-target="#time-and-price-in-different-parts-of-india">Time and price in different parts of India</a></li>
+  <li><a href="#analysis-summary" id="toc-analysis-summary" class="nav-link" data-scroll-target="#analysis-summary">Analysis (summary)</a></li>
+  <li><a href="#lemon-market-prices-of-second-hand-cars-in-india" id="toc-lemon-market-prices-of-second-hand-cars-in-india" class="nav-link" data-scroll-target="#lemon-market-prices-of-second-hand-cars-in-india">1. Lemon market: Prices of second-hand cars in India</a></li>
+  <li><a href="#carbon-emissions-average-kilometers-driven-in-india" id="toc-carbon-emissions-average-kilometers-driven-in-india" class="nav-link" data-scroll-target="#carbon-emissions-average-kilometers-driven-in-india">2. Carbon emissions? Average kilometers driven in India</a></li>
+  <li><a href="#preferences-in-india" id="toc-preferences-in-india" class="nav-link" data-scroll-target="#preferences-in-india">3. Preferences in India</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -169,16 +138,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Welcome again!</p>
 <p>I am a student trying to use coding to perform data analysis on datasets using the the knowledge I have learnt in my lessons so far. Stay tuned to see what I will be doing…</p>
-<section id="shiny-web-app" class="level3">
-<h3 class="anchored" data-anchor-id="shiny-web-app">Shiny Web App</h3>
-<iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/">
-</iframe>
-</section>
 <section id="dataset" class="level1">
 <h1>Dataset</h1>
 <p>For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
@@ -191,8 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>new_cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(new_cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,253
 Columns: 14
@@ -212,35 +175,28 @@ $ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", 
 $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
 </div>
 </div>
-<p><br> # Tidying data</p>
+</section>
+<section id="tidying-data" class="level1">
+<h1>Tidying data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cars1 <span class="ot">&lt;-</span> new_cars <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Mileage, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Mileage_v"</span>, <span class="st">"Mileage_unit"</span>), <span class="at">sep =</span> <span class="st">" "</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 2 rows [4447,
 4905].</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> cars1 <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">"Engine/CC"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove</span>(Engine, <span class="st">"CC"</span>)),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Power/bhp"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove</span>(Power, <span class="st">"bhp"</span>)),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Mileage_value"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(Mileage_v)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Power, Engine, Mileage_v)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `Power/bhp = as.numeric(str_remove(Power, "bhp"))`.
 Caused by warning:
 ! NAs introduced by coercion</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> cars <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, Location, Year, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, <span class="st">`</span><span class="at">Engine/CC</span><span class="st">`</span>, <span class="st">`</span><span class="at">Power/bhp</span><span class="st">`</span>, Seats, New_Price, Price)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,253
-Columns: 14
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
+Columns: 16
+$ Brand             &lt;chr&gt; "Maruti", "Hyundai", "Honda", "Maruti", "Audi", "Hyu…
+$ Model             &lt;chr&gt; "Wagon R LXI CNG", "Creta 1.6 CRDi SX Option", "Jazz…
 $ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
 $ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
+$ Car_age           &lt;dbl&gt; 14, 9, 13, 12, 11, 12, 11, 8, 11, 12, 6, 12, 9, 10, …
 $ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
 $ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
 $ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
@@ -254,95 +210,95 @@ $ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", 
 $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
 </div>
 </div>
-<p><br> # Analysis</p>
-<section id="time-and-price-in-different-parts-of-india" class="level3">
-<h3 class="anchored" data-anchor-id="time-and-price-in-different-parts-of-india">Time and price in different parts of India</h3>
+<section id="analysis-summary" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-summary">Analysis (summary)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Price)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values (`geom_line()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Brand              Model             Location              Year     
+ Length:7253        Length:7253        Length:7253        Min.   :1996  
+ Class :character   Class :character   Class :character   1st Qu.:2011  
+ Mode  :character   Mode  :character   Mode  :character   Median :2014  
+                                                          Mean   :2013  
+                                                          3rd Qu.:2016  
+                                                          Max.   :2019  
+                                                                        
+    Car_age      Kilometers_Driven  Fuel_Type         Transmission      
+ Min.   : 5.00   Min.   :    171   Length:7253        Length:7253       
+ 1st Qu.: 8.00   1st Qu.:  34000   Class :character   Class :character  
+ Median :10.00   Median :  53416   Mode  :character   Mode  :character  
+ Mean   :10.63   Mean   :  58699                                        
+ 3rd Qu.:13.00   3rd Qu.:  73000                                        
+ Max.   :28.00   Max.   :6500000                                        
+                                                                        
+  Owner_Type        Mileage_value   Mileage_unit         Engine/CC   
+ Length:7253        Min.   : 0.00   Length:7253        Min.   :  72  
+ Class :character   1st Qu.:15.17   Class :character   1st Qu.:1198  
+ Mode  :character   Median :18.16   Mode  :character   Median :1493  
+                    Mean   :18.14                      Mean   :1617  
+                    3rd Qu.:21.10                      3rd Qu.:1968  
+                    Max.   :33.54                      Max.   :5998  
+                    NA's   :2                          NA's   :46    
+   Power/bhp         Seats        New_Price             Price       
+ Min.   : 34.2   Min.   : 0.00   Length:7253        Min.   :  0.44  
+ 1st Qu.: 75.0   1st Qu.: 5.00   Class :character   1st Qu.:  3.50  
+ Median : 94.0   Median : 5.00   Mode  :character   Median :  5.64  
+ Mean   :112.8   Mean   : 5.28                      Mean   :  9.48  
+ 3rd Qu.:138.1   3rd Qu.: 5.00                      3rd Qu.:  9.95  
+ Max.   :616.0   Max.   :10.00                      Max.   :160.00  
+ NA's   :175     NA's   :53                         NA's   :1234    </code></pre>
 </div>
 </div>
 <p><br></p>
+</section>
+<section id="lemon-market-prices-of-second-hand-cars-in-india" class="level3">
+<h3 class="anchored" data-anchor-id="lemon-market-prices-of-second-hand-cars-in-india">1. Lemon market: Prices of second-hand cars in India</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Price, <span class="at">colour =</span> Location)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 19 rows containing missing values (`geom_line()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="about_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Owner_Type <span class="sc">==</span> <span class="st">"Second"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Price)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values (`geom_line()`).</code></pre>
+<pre><code>`summarise()` has grouped output by 'Location'. You can override using the
+`.groups` argument.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">fill =</span> Transmission)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">adjust =</span> <span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_density()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
+</section>
+<section id="carbon-emissions-average-kilometers-driven-in-india" class="level3">
+<h3 class="anchored" data-anchor-id="carbon-emissions-average-kilometers-driven-in-india">2. Carbon emissions? Average kilometers driven in India</h3>
+<p>One outlier from Chennai removed</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Fuel_Type <span class="sc">==</span> <span class="st">"Electric"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price)) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">adjust =</span> <span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Year'. You can override using the
+`.groups` argument.
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
+<iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
+<p><br></p>
+</section>
+<section id="preferences-in-india" class="level3">
+<h3 class="anchored" data-anchor-id="preferences-in-india">3. Preferences in India</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> Fuel_Type)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">fill =</span> Fuel_Type)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Fuel_Type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
@@ -352,162 +308,17 @@ $ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.5
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Kilometers_Driven <span class="sc">&lt;=</span> <span class="fl">4e+06</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Kilometers_Driven)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="about_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#one outlier from Chennai removed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1234 rows containing non-finite values (`stat_density()`).</code></pre>
 </div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
-</div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"used_cars_data.csv"</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,253
-Columns: 14
-$ S.No.             &lt;int&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15…
-$ Name              &lt;chr&gt; "Maruti Wagon R LXI CNG", "Hyundai Creta 1.6 CRDi SX…
-$ Location          &lt;chr&gt; "Mumbai", "Pune", "Chennai", "Chennai", "Coimbatore"…
-$ Year              &lt;int&gt; 2010, 2015, 2011, 2012, 2013, 2012, 2013, 2016, 2013…
-$ Kilometers_Driven &lt;int&gt; 72000, 41000, 46000, 87000, 40670, 75000, 86999, 360…
-$ Fuel_Type         &lt;chr&gt; "CNG", "Diesel", "Petrol", "Diesel", "Diesel", "LPG"…
-$ Transmission      &lt;chr&gt; "Manual", "Manual", "Manual", "Manual", "Automatic",…
-$ Owner_Type        &lt;chr&gt; "First", "First", "First", "First", "Second", "First…
-$ Mileage           &lt;chr&gt; "26.6 km/kg", "19.67 kmpl", "18.2 kmpl", "20.77 kmpl…
-$ Engine            &lt;chr&gt; "998 CC", "1582 CC", "1199 CC", "1248 CC", "1968 CC"…
-$ Power             &lt;chr&gt; "58.16 bhp", "126.2 bhp", "88.7 bhp", "88.76 bhp", "…
-$ Seats             &lt;int&gt; 5, 5, 5, 7, 5, 5, 5, 8, 5, 5, 5, 5, 5, 5, 5, 7, 5, 5…
-$ New_Price         &lt;chr&gt; "", "", "8.61 Lakh", "", "", "", "", "21 Lakh", "", …
-$ Price             &lt;dbl&gt; 1.75, 12.50, 4.50, 6.00, 17.74, 2.35, 3.50, 17.50, 5…</code></pre>
+<div class="cell-output-display">
+<p><img src="about_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><br></p>

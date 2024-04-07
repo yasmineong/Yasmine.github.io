@@ -97,7 +97,20 @@ summary(cars)
 ```
 <br>
 
-### 1. Lemon market: Prices of second-hand cars in India 
+### Background into India's car market
+
+When it comes to buying a new car, Indian consumers will root more for mileage than engine power. 60% of buyers want a fuel-efficient car (can be seen through high mileage) and 72% are looking to save money. Indian customers are seriously worried about fluctuating fuel prices and a good 60% don't expect fuel price stability in the next 12 months (from August 2023). They believe that fuel prices will remain too high hence the choice for a fuel-efficient car to save fuel costs.
+
+Also many of the bigger cities in this region boast 100 million plus population so congestion is a problem. People are realising that power packed vehicles cannot be driven in the cities in this region hence the focus on fuel efficiency.
+
+The lemon market in India is a huge problem due to information asymmetry between buyers and sellers. This asymmetry means that buyers are unable to access sufficient vehicle information, enabling sellers to exploit uninformed buyers by selling lower-quality cars. In summary, market failure (distortions in true value of the product) caused by adverse selection and moral hazard is a significant problem for many innocent buyers in India where cost is an influential factor in decision-making.
+
+Links for reference: https://auto.economictimes.indiatimes.com/news/industry/what-indian-consumers-prefer-the-most-while-buying-a-car/53825945
+<br> https://www.atlantis-press.com/article/125971556.pdf
+<br>
+<br>
+
+### 1. Lemon market: How high are the prices of second-hand cars in India?
 
 ```{r, echo = F}
 library(lubridate)
@@ -120,18 +133,21 @@ cars %>%
 
 ```{r, echo = F}
 cars %>%
-  filter(Owner_Type == "Second") %>%
+  filter(Owner_Type == c("First", "Second")) %>%
   mutate(Year = ym(str_c(Year, "-01"))) %>%
   na.omit() %>%
-  group_by(Year) %>%
+  group_by(Year, Owner_Type) %>%
   summarise(Price = mean(Price, na.rm = T)) %>%
   ggplot(aes(x = Year, y = Price)) +
   geom_line() +
   geom_point(colour = "red") +
-  labs(title = "Overall prices of second hand cars in India against time") +
+  facet_wrap(~ Owner_Type) +
+  labs(title = "Overall prices of first and second hand cars in India against time") +
   theme_bw() 
 ```
 <br>
+
+There has been an increase in second-hand car prices till 2017 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that. Perhaps the problem of the lemon market is slowly being alleviated as the difference in first and second hand car prices are increasing.
 
 ### 2. Carbon emissions? Average kilometers driven in India
 
@@ -249,7 +265,7 @@ pie(market_share$market_share,
 cars_summary <- cars %>%
   group_by(Brand) %>%
   summarise(Count = n()) %>%
-  arrange(desc(Count)) %>%
+  arrange(desc(Count))
 
 top_10_brands <- cars_summary %>%
   head(10) %>%

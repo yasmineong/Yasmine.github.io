@@ -5,7 +5,7 @@ account: cc01lz-yasmineong
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 11498030
-bundleId: 8374970
+bundleId: 8472882
 url: https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/
 version: 1
 asMultiple: FALSE

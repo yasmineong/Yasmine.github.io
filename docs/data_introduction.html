@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>yasmine.githhub.io - Let’s crack the code!</title>
+<title>yasmine.githhub.io - Data Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -116,11 +82,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data_introduction.html" rel="" target="">
+    <a class="nav-link active" href="./data_introduction.html" rel="" target="" aria-current="page">
  <span class="menu-text">Data Introduction</span></a>
   </li>  
   <li class="nav-item">
@@ -143,14 +109,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link active" data-scroll-target="#tidying-data">Tidying data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Let’s crack the code!</h1>
+<h1 class="title">Data Introduction</h1>
 </div>
 
 
@@ -165,25 +137,336 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Hello and welcome to my Github website!</p>
-<p>I’m Yasmine, an NUS undergraduate, and I’m thrilled to have you here on my website dedicated to exploring and analysing data. Whether you’re a fellow data enthusiast, a curious learner about what we do for exploratory data analysis, or someone interested in gaining insights from data, you’re in the right place.</p>
-<p>In this course, NM2207, the skills we have picked up are abundant and we are now tasked to examine the stories that data can tell us. That’s why I created this space to share my exploratory data analysis journey with you!</p>
-<p>Through the power of exploratory data analysis (EDA), we’ll dive deep into a particular dataset about used cars in India, uncovering hidden patterns, trends, and relationships. From interactive visualizations to data-driven narratives, I’ll be sharing insights derived from my analyses.</p>
+<p>For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.</p>
+<p><strong>Title</strong>: Cars Dataset</p>
+<p><strong>Description</strong>: The Cars Dataset contains information about various car models, including their specifications and pricing details in certain parts of India. It a collection of attributes related to different car models, possibly intended for analysis, modeling, or machine learning tasks related to the automotive industry.</p>
+<p><strong>Attributes</strong>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>.  Brand &amp; Model
+ . Location: Certain cities in India
+ . Year
+ . Kilometers driven
+ . Fuel type
+ . Transmission type
+ . Owner type
+ . Mileage: How many kilometers the vehicle can travel per litre of fuel
+ . Engine: Measured in cubic capacity (CC). It refers to the amount of air and fuel that can be pushed through the cylinders in the engine. In most cases, the bigger the capacity, the more powerful the vehicle.
+ . Power: Measured in brake horsepower (BHP). It refers to the horsepower of the car after accounting for the frictional losses in power from the engine. Generally, a higher BHP means increased speed, strength, and overall capabilities on the road. 
+ . Number of seats
+ . Price: 1 Lakh = 100,000</code></pre>
+</div>
+</div>
+<p><strong>Potential Use Cases</strong>: This dataset could be used for various analytical purposes, including:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>.  Exploratory data analysis (EDA) to understand trends and patterns in the automotive market.
+ . Predictive modeling to estimate car prices based on their specifications.
+ . Classification tasks to predict car types or fuel efficiency based on attributes.
+ . Market research to understand consumer preferences and buying behavior in the automotive industry.
+ . Academic research in fields like transportation engineering, automotive engineering, data science, and machine learning.
+ . Product development
+ . Risk assessment</code></pre>
+</div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="data.png" width="800" height="600"></p>
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 20%">
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 6%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">S.No.</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Kilometers_Driven</th>
+<th style="text-align: left;">Fuel_Type</th>
+<th style="text-align: left;">Transmission</th>
+<th style="text-align: left;">Owner_Type</th>
+<th style="text-align: left;">Mileage</th>
+<th style="text-align: left;">Engine</th>
+<th style="text-align: left;">Power</th>
+<th style="text-align: right;">Seats</th>
+<th style="text-align: left;">New_Price</th>
+<th style="text-align: right;">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Maruti Wagon R LXI CNG</td>
+<td style="text-align: left;">Mumbai</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">72000</td>
+<td style="text-align: left;">CNG</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: left;">26.6 km/kg</td>
+<td style="text-align: left;">998 CC</td>
+<td style="text-align: left;">58.16 bhp</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Hyundai Creta 1.6 CRDi SX Option</td>
+<td style="text-align: left;">Pune</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">41000</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: left;">19.67 kmpl</td>
+<td style="text-align: left;">1582 CC</td>
+<td style="text-align: left;">126.2 bhp</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">12.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Honda Jazz V</td>
+<td style="text-align: left;">Chennai</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">46000</td>
+<td style="text-align: left;">Petrol</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: left;">18.2 kmpl</td>
+<td style="text-align: left;">1199 CC</td>
+<td style="text-align: left;">88.7 bhp</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">8.61 Lakh</td>
+<td style="text-align: right;">4.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Maruti Ertiga VDI</td>
+<td style="text-align: left;">Chennai</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">87000</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: left;">20.77 kmpl</td>
+<td style="text-align: left;">1248 CC</td>
+<td style="text-align: left;">88.76 bhp</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">6.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Audi A4 New 2.0 TDI Multitronic</td>
+<td style="text-align: left;">Coimbatore</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">40670</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Automatic</td>
+<td style="text-align: left;">Second</td>
+<td style="text-align: left;">15.2 kmpl</td>
+<td style="text-align: left;">1968 CC</td>
+<td style="text-align: left;">140.8 bhp</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">17.74</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Hyundai EON LPG Era Plus Option</td>
+<td style="text-align: left;">Hyderabad</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: left;">LPG</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: left;">21.1 km/kg</td>
+<td style="text-align: left;">814 CC</td>
+<td style="text-align: left;">55.2 bhp</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">2.35</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>I invite you to immerse yourself in the world of data analysis and storytelling. Take a moment to interact with the visualisations, explore the data yourself, and let the insights guide you on an enlightening journey.</p>
-<p>Once again, thank you for joining me on this adventure. What are you waiting for? Let’s dive in and uncover the stories hidden within the data together!</p>
+<section id="tidying-data" class="level1">
+<h1>Tidying data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Coding is fun!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Coding is fun!</code></pre>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Brand</th>
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">Car_age</th>
+<th style="text-align: right;">Kilometers_Driven</th>
+<th style="text-align: left;">Fuel_Type</th>
+<th style="text-align: left;">Transmission</th>
+<th style="text-align: left;">Owner_Type</th>
+<th style="text-align: right;">Mileage_value</th>
+<th style="text-align: left;">Mileage_unit</th>
+<th style="text-align: right;">Engine/CC</th>
+<th style="text-align: right;">Power/bhp</th>
+<th style="text-align: right;">Seats</th>
+<th style="text-align: left;">New_Price</th>
+<th style="text-align: right;">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Maruti</td>
+<td style="text-align: left;">Wagon R LXI CNG</td>
+<td style="text-align: left;">Mumbai</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">72000</td>
+<td style="text-align: left;">CNG</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: right;">26.60</td>
+<td style="text-align: left;">km/kg</td>
+<td style="text-align: right;">998</td>
+<td style="text-align: right;">58.16</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hyundai</td>
+<td style="text-align: left;">Creta 1.6 CRDi SX Option</td>
+<td style="text-align: left;">Pune</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">41000</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: right;">19.67</td>
+<td style="text-align: left;">kmpl</td>
+<td style="text-align: right;">1582</td>
+<td style="text-align: right;">126.20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">12.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Honda</td>
+<td style="text-align: left;">Jazz V</td>
+<td style="text-align: left;">Chennai</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">46000</td>
+<td style="text-align: left;">Petrol</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: right;">18.20</td>
+<td style="text-align: left;">kmpl</td>
+<td style="text-align: right;">1199</td>
+<td style="text-align: right;">88.70</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">8.61 Lakh</td>
+<td style="text-align: right;">4.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maruti</td>
+<td style="text-align: left;">Ertiga VDI</td>
+<td style="text-align: left;">Chennai</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">87000</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: right;">20.77</td>
+<td style="text-align: left;">kmpl</td>
+<td style="text-align: right;">1248</td>
+<td style="text-align: right;">88.76</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">6.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Audi</td>
+<td style="text-align: left;">A4 New 2.0 TDI Multitronic</td>
+<td style="text-align: left;">Coimbatore</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">40670</td>
+<td style="text-align: left;">Diesel</td>
+<td style="text-align: left;">Automatic</td>
+<td style="text-align: left;">Second</td>
+<td style="text-align: right;">15.20</td>
+<td style="text-align: left;">kmpl</td>
+<td style="text-align: right;">1968</td>
+<td style="text-align: right;">140.80</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">17.74</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hyundai</td>
+<td style="text-align: left;">EON LPG Era Plus Option</td>
+<td style="text-align: left;">Hyderabad</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: left;">LPG</td>
+<td style="text-align: left;">Manual</td>
+<td style="text-align: left;">First</td>
+<td style="text-align: right;">21.10</td>
+<td style="text-align: left;">km/kg</td>
+<td style="text-align: right;">814</td>
+<td style="text-align: right;">55.20</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">2.35</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<p><span style="color:red">This is be the tidied dataset that we will be using.</span></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Yasmine.githhub.io - Data analysis</title>
+<title>yasmine.githhub.io - Data analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Yasmine.githhub.io</span>
+    <span class="navbar-title">yasmine.githhub.io</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -86,8 +86,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">Data introduction</span></a>
+    <a class="nav-link" href="./data_introduction.html" rel="" target="">
+ <span class="menu-text">Data Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./india_car_market.html" rel="" target="">
+ <span class="menu-text">India’s car market</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./data_analysis.html" rel="" target="" aria-current="page">
@@ -105,7 +109,16 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" id="toc-lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" class="nav-link active" data-scroll-target="#lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india">1. Lemon market: How high are the prices of second-hand cars in India?</a></li>
+  <li><a href="#carbon-emissions-average-kilometers-driven-in-india" id="toc-carbon-emissions-average-kilometers-driven-in-india" class="nav-link" data-scroll-target="#carbon-emissions-average-kilometers-driven-in-india">2. Carbon emissions? Average kilometers driven in India</a></li>
+  <li><a href="#preferences-and-car-usage-in-india" id="toc-preferences-and-car-usage-in-india" class="nav-link" data-scroll-target="#preferences-and-car-usage-in-india">3. Preferences and car usage in India</a></li>
+  <li><a href="#predictors-in-the-market" id="toc-predictors-in-the-market" class="nav-link" data-scroll-target="#predictors-in-the-market">4. Predictors in the market</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -127,8 +140,245 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Here is a summary of all the variables in the dataset.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Brand</th>
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Car_age</th>
+<th style="text-align: left;">Kilometers_Driven</th>
+<th style="text-align: left;">Fuel_Type</th>
+<th style="text-align: left;">Transmission</th>
+<th style="text-align: left;">Owner_Type</th>
+<th style="text-align: left;">Mileage_value</th>
+<th style="text-align: left;">Mileage_unit</th>
+<th style="text-align: left;">Engine/CC</th>
+<th style="text-align: left;">Power/bhp</th>
+<th style="text-align: left;">Seats</th>
+<th style="text-align: left;">New_Price</th>
+<th style="text-align: left;">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Min. :1996</td>
+<td style="text-align: left;">Min. : 5.00</td>
+<td style="text-align: left;">Min. : 171</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Min. : 72</td>
+<td style="text-align: left;">Min. : 34.2</td>
+<td style="text-align: left;">Min. : 0.00</td>
+<td style="text-align: left;">Length:7253</td>
+<td style="text-align: left;">Min. : 0.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:2011</td>
+<td style="text-align: left;">1st Qu.: 8.00</td>
+<td style="text-align: left;">1st Qu.: 34000</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:15.17</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.:1198</td>
+<td style="text-align: left;">1st Qu.: 75.0</td>
+<td style="text-align: left;">1st Qu.: 5.00</td>
+<td style="text-align: left;">Class :character</td>
+<td style="text-align: left;">1st Qu.: 3.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :2014</td>
+<td style="text-align: left;">Median :10.00</td>
+<td style="text-align: left;">Median : 53416</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :18.16</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median :1493</td>
+<td style="text-align: left;">Median : 94.0</td>
+<td style="text-align: left;">Median : 5.00</td>
+<td style="text-align: left;">Mode :character</td>
+<td style="text-align: left;">Median : 5.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :2013</td>
+<td style="text-align: left;">Mean :10.63</td>
+<td style="text-align: left;">Mean : 58699</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :18.14</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean :1617</td>
+<td style="text-align: left;">Mean :112.8</td>
+<td style="text-align: left;">Mean : 5.28</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Mean : 9.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:2016</td>
+<td style="text-align: left;">3rd Qu.:13.00</td>
+<td style="text-align: left;">3rd Qu.: 73000</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:21.10</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.:1968</td>
+<td style="text-align: left;">3rd Qu.:138.1</td>
+<td style="text-align: left;">3rd Qu.: 5.00</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">3rd Qu.: 9.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :2019</td>
+<td style="text-align: left;">Max. :28.00</td>
+<td style="text-align: left;">Max. :6500000</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :33.54</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :5998</td>
+<td style="text-align: left;">Max. :616.0</td>
+<td style="text-align: left;">Max. :10.00</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Max. :160.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
+<section id="lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" class="level1">
+<h1>1. Lemon market: How high are the prices of second-hand cars in India?</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br></p>
+<p>There has been an increase in second-hand car prices till 2017 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that. Perhaps the problem of the lemon market is slowly being alleviated as the difference in first and second hand car prices are increasing.</p>
+</section>
+<section id="carbon-emissions-average-kilometers-driven-in-india" class="level1">
+<h1>2. Carbon emissions? Average kilometers driven in India</h1>
+<p>One outlier from Chennai removed</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br></p>
+<iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
+<p><br></p>
+</section>
+<section id="preferences-and-car-usage-in-india" class="level1">
+<h1>3. Preferences and car usage in India</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br></p>
+<p>Maruti seems to be the most popular car brand that Indian consumers go for. Upon further inspection into the prices of the individual car brands, we seem to see a preference for the lowest costing car (Maruti) among the top 10.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol type="1">
+<li>Preferences for low costs, 5-seater vehicles, lower power and engine vehicles.</li>
+<li>Automatic cars seem to have higher power and engine than manual cars –&gt; More may opt for manual cars since they are of lower power and engine.</li>
+<li>Cars in India do not travel very long distances.</li>
+<li>Most of the histograms are highly skewed, which may lead to some poor performances of certain models.</li>
+</ol>
+</section>
+<section id="predictors-in-the-market" class="level1">
+<h1>4. Predictors in the market</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol type="1">
+<li><p>Strongest correlation between the power and engine capacity of a car.</p></li>
+<li><p>There is a strong correlation between costs and power of the car –&gt; the higher the BHP, the higher the costs of the car which matches what vehicle analytics say. However, since customers in India tend to go for lower prices, producers need not create so many high-powered cars. Moreover, India’s cities are known for their traffic congestion thus smaller, less powerful engines are practical for navigating these conditions efficient.</p></li>
+<li><p>Relationship of price and engine of a car is also moderately strong. This seems to be in line with India’s taxation policies: they impose higher taxes on cars with larger engines and as a result higher BHP, making such vehicles much more unafforable.</p></li>
+</ol>
+<p>Link for reference: https://www.cars24.com/blog/what-is-bhp-in-cars/</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

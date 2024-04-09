@@ -3,15 +3,15 @@ project:
   output-dir: docs
   
 website:
-  title: "Yasmine.githhub.io"
+  title: "yasmine.githhub.io"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: Data introduction 
-      - href: data_analysis.qmd
-        text: Data analysis
+      - data_introduction.qmd
+      - india_car_market.qmd
+      - data_analysis.qmd
+      
 
 format:
   html:

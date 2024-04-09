@@ -1,5 +1,5 @@
 ---
-title: "Yasmine's website"
+title: "Let's crack the code!"
 ---
 
 Hello and welcome to my Github website!
@@ -16,8 +16,6 @@ knitr::include_graphics("data.png")
 I invite you to immerse yourself in the world of data analysis and storytelling. Take a moment to interact with the visualisations, explore the data yourself, and let the insights guide you on an enlightening journey.
 
 Once again, thank you for joining me on this adventure. What are you waiting for? Let's dive in and uncover the stories hidden within the data together! 
-
-Check out the "About" page ----->
 
 ```{r}
 cat("Coding is fun!")

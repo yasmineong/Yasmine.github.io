@@ -1,0 +1,84 @@
+---
+title: "Data Introduction"
+---
+
+For my analysis, I will be looking at a dataset about cars that was found on Kaggle: https://www.kaggle.com/datasets/ayushparwal2026/cars-dataset.
+
+
+**Title**: Cars Dataset
+
+**Description**:
+The Cars Dataset contains information about various car models, including their specifications and pricing details in certain parts of India. It a collection of attributes related to different car models, possibly intended for analysis, modeling, or machine learning tasks related to the automotive industry.
+
+**Attributes**:
+```{r, echo = F, eval = T} 
+bullet_list <- c(
+  " Brand & Model",
+  "Location: Certain cities in India",
+  "Year",
+  "Kilometers driven",
+  "Fuel type",
+  "Transmission type",
+  "Owner type",
+  "Mileage: How many kilometers the vehicle can travel per litre of fuel",
+  "Engine: Measured in cubic capacity (CC). It refers to the amount of air and fuel that can be pushed through the cylinders in the engine. In most cases, the bigger the capacity, the more powerful the vehicle.",
+  "Power: Measured in brake horsepower (BHP). It refers to the horsepower of the car after accounting for the frictional losses in power from the engine. Generally, a higher BHP means increased speed, strength, and overall capabilities on the road. ",
+  "Number of seats",
+  "Price: 1 Lakh = 100,000"
+)
+cat(paste(". ", bullet_list, "\n", sep = ""))
+```
+
+**Potential Use Cases**:
+This dataset could be used for various analytical purposes, including:
+```{r, echo = F, eval = T} 
+bullet_list <- c(
+  " Exploratory data analysis (EDA) to understand trends and patterns in the automotive market.",
+  "Predictive modeling to estimate car prices based on their specifications.",
+  "Classification tasks to predict car types or fuel efficiency based on attributes.",
+  "Market research to understand consumer preferences and buying behavior in the automotive industry.",
+  "Academic research in fields like transportation engineering, automotive engineering, data science, and machine learning.",
+  "Product development",
+  "Risk assessment"
+  )
+cat(paste(". ", bullet_list, "\n", sep = ""))
+```
+
+
+```{r, echo = F, warning=F, message=F}
+library(tidyverse)
+```
+
+```{r, echo = F}
+new_cars <- read.csv("used_cars_data.csv")
+knitr::kable(head(new_cars))
+```
+## Tidying data
+
+```{r, echo = F, warning=F}
+cars1 <- new_cars %>%
+  separate(Mileage, into = c("Mileage_v", "Mileage_unit"), sep = " ")
+
+cars2 <- cars1 %>%
+  separate(Name, into = c("Brand", "Model"), sep = " ", extra = "merge") %>%
+  mutate(Brand = case_when(
+    Brand == "ISUZU" ~ "Isuzu",
+    Brand == "Land" ~ "Land Rover",
+    TRUE ~ Brand
+  ))
+
+cars <- cars2 %>%
+  mutate("Engine/CC" = as.numeric(str_remove(Engine, "CC")),
+         "Power/bhp" = as.numeric(str_remove(Power, "bhp")),
+         "Mileage_value" = as.numeric(Mileage_v), 
+         "Car_age" =  year(Sys.Date()) - Year
+  ) %>%
+  select(-c(Power, Engine, Mileage_v)) 
+
+cars <- cars %>%
+  select(Brand, Model, Location, Year, Car_age, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, `Engine/CC`, `Power/bhp`, Seats, New_Price, Price)
+
+knitr::kable(head(cars))
+```
+
+<span style="color:red">This is be the tidied dataset that we will be using.</span>

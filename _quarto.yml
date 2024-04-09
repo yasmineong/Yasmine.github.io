@@ -8,7 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: Data introduction 
+      - href: data_analysis.qmd
+        text: Data analysis
 
 format:
   html:

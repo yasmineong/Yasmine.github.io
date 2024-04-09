@@ -1,42 +1,52 @@
 library(shiny)
+library(DT)
+library(shiny)
 
-# Define UI for application that draws a histogram
+cars_data <- cars %>% 
+  filter(Kilometers_Driven <= 4e+06) %>%
+  mutate(Year = ym(str_c(Year, "-01"))) %>%
+  na.omit() %>%
+  group_by(Year) %>%
+  summarise(Ave_km_driven = mean(Kilometers_Driven, na.rm = T),
+            Ave_mileage = mean(Mileage_value))
+
 ui <- fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 60,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-           plotOutput("distPlot")
-        )
+  titlePanel("Car Trends in India"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("City", "Select City:",
+                  choices = unique(cars$Location)),
+      actionButton("update", "Update")
+    ),
+    mainPanel(
+      plotOutput("avg_km_plot"),
+      plotOutput("mileage_plot")
     )
+  )
 )
 
-# Define server logic required to draw a histogram
+# Define server logic
 server <- function(input, output) {
-
-    output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'red', border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histogram of waiting times')
-    })
+  # Reactive subset of data based on user input
+  selected_data <- reactive({
+    subset(cars_data, Location == input$City)
+  })
+  
+  # Plot for average kilometers driven
+  output$avg_km_plot <- renderPlot({
+    ggplot(selected_data(), aes(x = Year, y = Ave_km_driven)) +
+      geom_line() +
+      labs(title = "Average Kilometers Driven per Year",
+           x = "Year", y = "Average Kilometers Driven")
+  })
+  
+  # Plot for mileage per year
+  output$mileage_plot <- renderPlot({
+    ggplot(selected_data(), aes(x = Year, y = Ave_mileage)) +
+      geom_line() +
+      labs(title = "Mileage per Year",
+           x = "Year", y = "Mileage")
+  })
 }
 
-# Run the application 
 shinyApp(ui = ui, server = server)

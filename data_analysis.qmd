@@ -110,7 +110,7 @@ If you click through, you can see that there is all cities show a decrease in av
 
 
 # 3. Preferences and car usage in India 
-<br>
+
 Here's bar graphs of the categorical variables of this dataset. 
 ```{r, echo = F, warning = F}
 library(patchwork)
@@ -188,7 +188,6 @@ plot6 <- cars %>%
 
 plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot_layout(ncol = 2) 
 ```
-<br>
 Now, let's zoom into car brands:
 ```{r, echo = F}
 library(patchwork)

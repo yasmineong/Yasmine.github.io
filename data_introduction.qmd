@@ -15,7 +15,7 @@ The Cars Dataset contains information about various car models, including their 
 ```{r, echo = F, eval = T, results = 'asis'} 
 bullet_list <- c(
   "*Brand & Model*",
-  "*Location*: Certain cities in India",
+  "*Location:* Certain cities in India",
   "*Year*",
   "*Kilometers driven*",
   "*Fuel type*",

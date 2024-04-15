@@ -28,27 +28,9 @@ cars <- cars %>%
   select(Brand, Model, Location, Year, Car_age, Kilometers_Driven, Fuel_Type, Transmission, Owner_Type, Mileage_value, Mileage_unit, `Engine/CC`, `Power/bhp`, Seats, New_Price, Price)
 knitr::kable(head(summary(cars)))
 ```
-<br>
+Let's get started!
 
-# 1. Lemon market: How high are the prices of second-hand cars in India?
-
-```{r, echo = F, warning = F, message = F}
-library(lubridate)
-library(stringr)
-cars %>%
-  filter(Owner_Type == "Second") %>%
-  mutate(Year = ym(str_c(Year, "-01"))) %>%
-  na.omit() %>%
-  group_by(Location, Year) %>%
-  summarise(Price = mean(Price, na.rm = T)) %>%
-  ggplot(aes(x = Year, y = Price)) +
-  geom_line() +
-  labs(title = "Prices of second hand cars in different parts of India against time") +
-  facet_wrap(~ Location, nrow = 4, scales = "free_y") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 60, size = 7, vjust = 0.5))
-```
-
+# 1. Lemon market: How are the prices of second-hand cars in India like?
 
 ```{r, echo = F, warning = F, message = F}
 cars %>%
@@ -64,13 +46,37 @@ cars %>%
   labs(title = "Overall prices of first and second hand cars in India against time") +
   theme_bw() 
 ```
+<div style="text-align: justify;">
+There has been an increase in second-hand car prices till around 2013 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that, leading to a growing difference in prices of first and second hand cars. If we were to do some predictions (predictive pricing models will not be covered here), the decreasing trend can provide a benchmark against which sellers' asking prices can be compared. If sellers consistently ask for prices significantly higher than the predicted values for similar cars, it may indicate that they are attempting to exploit buyers' lack of information or conceal defects in the vehicles. Thus knowing price trends can better protect consumers in the lemon market as it allows them to assess the risk associated with purchasing a used car through price signals.
+
+However, if the growing difference in prices is driven by increased uncertainty and risk associated with buying used cars, it may signal a market failure that requires intervention to improve transparency and consumer protection. This widening price gap could result from a worsening lemon market problem, where buyers become increasingly wary of purchasing used cars due to concerns about hidden defects or poor quality. Therefore, there is also a need to investigate the cause of this growing price difference.
+</div>
+
+Now let's see how these pricing trends may differ in different parts in India.
 <br>
-
-There has been an increase in second-hand car prices till 2017 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that. Perhaps the problem of the lemon market is slowly being alleviated as the difference in first and second hand car prices are increasing.
-
+```{r, echo = F, warning = F, message = F}
+library(lubridate)
+library(stringr)
+cars %>%
+  filter(Owner_Type == "Second") %>%
+  mutate(Year = ym(str_c(Year, "-01"))) %>%
+  na.omit() %>%
+  group_by(Location, Year) %>%
+  summarise(Price = mean(Price, na.rm = T)) %>%
+  ggplot(aes(x = Year, y = Price)) +
+  geom_line(colour = "blue") +
+  labs(title = "Prices of second hand cars in different parts of India against time") +
+  facet_wrap(~ Location, nrow = 4, scales = "free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 60, size = 7, vjust = 0.5),
+        plot.title = element_text(family = "Helvetica"))
+```
+<div style="text-align: justify;">
+In Chennai, Delhi, and Jaipur, it's notable that price trends are still on the rise. Consumers in these areas should recognize that comparing prices of second-hand cars with those in other parts of India may not be valid. Additionally, they shouldn't be surprised if sellers continue to offer such (second-hand) models at even higher prices.
+</div>
 # 2. Carbon emissions? Average kilometers driven in India
 
-One outlier from Chennai removed
+For this graph, one outlier from Chennai was removed.
 ```{r, echo = F, warning = F, message = F}
 cars %>%
   filter(Kilometers_Driven <= 4e+06) %>%
@@ -85,13 +91,27 @@ cars %>%
        x = "Year",
        y = "Average kilometers driven")
 ```
+<div style="text-align: justify;">
+There is a decrease in average kilometres driven over time and generally, since less distance is covered, there should be less gas emissions (though it still depends on a variety of factors). 
+```{r, out.height= "700px",out.width= "800px",echo=F,eval=TRUE,fig.cap="Photo from *Our World in Data* on India's Carbon Emissions"}
+knitr::include_graphics("india_emissions.png")
+```
+If we were to assume ave_km_driven ≈ carbon emissions, this means that cars are becoming smaller contributors to the increase in global emissions as shown in the image since they display opposite trends. Moreover, it does not seem that CO2 emissions from cars will double by 2050 which means the policies in place, and the measure implemented by the government seem to be working.
+
+Next, here's a shiny app to investigate this phenomenon more closely in different cities of India.
+</div>
 <br>
 ```{=html}
 <iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
 ```
+<div style="text-align: justify;">
+If you click through, you can see that there is all cities show a decrease in average kilometers driven throughout the years. But upon closer inspection, different cars brands contribute differently to the average distance travelled. Depending on the fuel efficiency on the brand, more can then be derived about the true emission level generated by each one of them, which can aid the government in deciding which firms to clamp down on for emission levels.
+</div>
+
 
 # 3. Preferences and car usage in India 
-
+<br>
+Here's bar graphs of the categorical variables of this dataset. 
 ```{r, echo = F, warning = F}
 library(patchwork)
 plot1 <- cars %>%
@@ -100,9 +120,10 @@ plot1 <- cars %>%
   labs(title = "Count of cars per fuel type",
        x = "Fuel type",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
-         axis.title.y = element_text(size = 8))
+         axis.title.y = element_text(size = 8)) 
 
 plot2 <- cars %>%
   ggplot(aes(x = Transmission)) +
@@ -110,9 +131,10 @@ plot2 <- cars %>%
   labs(title = "Count of cars per transmission type",
        x = "Transmission type",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
-         axis.title.y = element_text(size = 8))
+         axis.title.y = element_text(size = 8)) 
 
 plot3 <- cars %>%
   ggplot(aes(x = Owner_Type)) +
@@ -120,9 +142,10 @@ plot3 <- cars %>%
   labs(title = "Count of cars per owner type",
        x = "Owner type",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
-         axis.title.y = element_text(size = 8))
+         axis.title.y = element_text(size = 8)) 
 
 plot4 <- cars %>%
   ggplot(aes(x = Brand)) +
@@ -130,10 +153,11 @@ plot4 <- cars %>%
   labs(title = "Count of cars per brand",
        x = "Brands",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
          axis.title.y = element_text(size = 8),
-         axis.text.x = element_text(angle = 45, size = 5, vjust = 0.5))
+         axis.text.x = element_text(angle = 45, size = 5, vjust = 0.5)) 
 
 plot5 <- cars %>%
   count(Model) %>%
@@ -144,10 +168,11 @@ plot5 <- cars %>%
   labs(title = "Count of cars per (top 10) model",
        x = "Models",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
          axis.title.y = element_text(size = 8),
-         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5))
+         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5)) 
 
 plot6 <- cars %>%
   ggplot(aes(x = Location)) +
@@ -155,15 +180,16 @@ plot6 <- cars %>%
   labs(title = "Count of cars per location",
        x = "Location",
        y = "Count") +
+  theme_light() +
    theme(plot.title = element_text(size = 10),
          axis.title.x = element_text(size = 8),
          axis.title.y = element_text(size = 8),
-         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5))
+         axis.text.x = element_text(angle = 45, size = 7, vjust = 0.5)) 
 
 plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot_layout(ncol = 2) 
 ```
 <br>
-
+Now, let's zoom into car brands:
 ```{r, echo = F}
 library(patchwork)
 market_share <- cars %>%
@@ -179,6 +205,8 @@ pie(market_share$market_share,
     font = 3,
     cex = 0.8)
 ```
+<div style="text-align: justify;"> Maruti seems to be the most popular car brand that Indian consumers go for, seeing how it has the highest count of cars owned by Indians in all the regions (in the dataset). Let's take a closer look into why this may be so by looking at price:
+</div>
 ```{r, echo = F, message = F, warning = F}
 cars_summary <- cars %>%
   group_by(Brand) %>%
@@ -192,55 +220,106 @@ top_10_brands <- cars_summary %>%
 cars$Top_10 <- ifelse(cars$Brand %in% top_10_brands, "Top 10", "Others")
 
 ggplot(cars, aes(x = Price, y = Brand)) +
-  geom_boxplot() +
+  geom_boxplot(colour = "#00A6FF") +
   facet_wrap(~ Top_10, scales = "free_y") +
   labs(title = "Price Ranges for Each Car Brand", 
        x = "Price", 
-       y = "Brand") +
+       y = "Brand",
+      ) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 ```
-<br>
+<div style="text-align: justify;">
+Upon closer examination of the prices of individual car brands, a preference for the most economical option, Maruti, is evident among the top 10. Meanwhile, brands such as Audi, BMW, and Mercedes-Benz, which command higher average prices, consequently hold a smaller market share as fewer consumers opt for them. However, their inclusion in the top 10 may suggest a significant demand among Indian consumers for luxury car brands.
 
-Maruti seems to be the most popular car brand that Indian consumers go for. Upon further inspection into the prices of the individual car brands, we seem to see a preference for the lowest costing car (Maruti) among the top 10.
-
+Next, what about do the numerical variables of this dataset tell us?
+</div>
 ```{r, echo = F, warning = F, message = F}
 library(patchwork)
 graph1 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = Price, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
+  geom_density(adjust = 0.5) +
+  labs(title = "Density Plot of Price",
+       x = "Price",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph2 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = Car_age, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
+  geom_density(adjust = 0.5) +
+  labs(title = "Density Plot of Car Age ",
+       x = "Car age",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph3 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = Kilometers_Driven, fill = Transmission)) +
   geom_density(adjust = 0.5) +
-   theme(axis.text.x = element_text(size = 6, angle = 25))
+  labs(title = "Density Plot of Kilometers Driven",
+       x = "Kilometers driven",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph4 <- cars %>%
+  filter(Mileage_unit == "kmpl") %>%
   na.omit() %>%
   ggplot(aes(x = Mileage_value, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
+  geom_density(adjust = 0.5) +
+  labs(title = "Density Plot of Mileage Values",
+       x = "Mileage",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph5 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = `Engine/CC`, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
+  geom_density(adjust = 0.5) +
+  labs(title = "Density Plot of Engine Values",
+       x = "Engine/CC",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph6 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = `Power/bhp`, fill = Transmission)) +
   geom_density(adjust = 0.5) +
-  theme(axis.text.x = element_text(size = 6))
+  labs(title = "Density Plot of Power Values",
+       x = "Power/bhp",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph7 <- cars %>%
   na.omit() %>%
   ggplot(aes(x = Seats, fill = Transmission)) +
-  geom_density(adjust = 0.5) 
+  geom_density(adjust = 0.5) +
+  labs(title = "Density Plot of Number of Seats",
+       x = "Seats",
+       y = "Density") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10),
+         axis.title.x = element_text(size = 8),
+         axis.title.y = element_text(size = 8)) 
 
 graph1 + graph2 + graph3 + graph4 + graph5 + graph6 + graph7 + plot_layout(ncol = 2)
 ```
@@ -274,4 +353,6 @@ ggcorrplot(cor(numerical_variables),
 
 3. Relationship of price and engine of a car is also moderately strong. This seems to be in line with India's taxation policies: they impose higher taxes on cars with larger engines and as a result higher BHP, making such vehicles much more unafforable.
 
-Link for reference: https://www.cars24.com/blog/what-is-bhp-in-cars/
+**Citations**: 
+<br> https://www.cars24.com/blog/what-is-bhp-in-cars/
+<br> Ritchie, H., Roser, M., & Rosado, P. (2020, May 11). *India: CO2 Country Profile*. Our World in Data. [https://ourworldindata.org/co2/country/india#what-are-the-country-s-annual-co2-emissions](https://ourworldindata.org/co2/country/india#what-are-the-country-s-annual-co2-emissions) 

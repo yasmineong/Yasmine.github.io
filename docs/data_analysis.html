@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" id="toc-lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" class="nav-link active" data-scroll-target="#lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india">1. Lemon market: How high are the prices of second-hand cars in India?</a></li>
+  <li><a href="#lemon-market-how-are-the-prices-of-second-hand-cars-in-india-like" id="toc-lemon-market-how-are-the-prices-of-second-hand-cars-in-india-like" class="nav-link active" data-scroll-target="#lemon-market-how-are-the-prices-of-second-hand-cars-in-india-like">1. Lemon market: How are the prices of second-hand cars in India like?</a></li>
   <li><a href="#carbon-emissions-average-kilometers-driven-in-india" id="toc-carbon-emissions-average-kilometers-driven-in-india" class="nav-link" data-scroll-target="#carbon-emissions-average-kilometers-driven-in-india">2. Carbon emissions? Average kilometers driven in India</a></li>
   <li><a href="#preferences-and-car-usage-in-india" id="toc-preferences-and-car-usage-in-india" class="nav-link" data-scroll-target="#preferences-and-car-usage-in-india">3. Preferences and car usage in India</a></li>
   <li><a href="#predictors-in-the-market" id="toc-predictors-in-the-market" class="nav-link" data-scroll-target="#predictors-in-the-market">4. Predictors in the market</a></li>
@@ -303,57 +303,86 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </div>
 </div>
-<p><br></p>
-<section id="lemon-market-how-high-are-the-prices-of-second-hand-cars-in-india" class="level1">
-<h1>1. Lemon market: How high are the prices of second-hand cars in India?</h1>
+<p>Let’s get started!</p>
+<section id="lemon-market-how-are-the-prices-of-second-hand-cars-in-india-like" class="level1">
+<h1>1. Lemon market: How are the prices of second-hand cars in India like?</h1>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div style="text-align: justify;">
+<p>There has been an increase in second-hand car prices till around 2013 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that, leading to a growing difference in prices of first and second hand cars. If we were to do some predictions (predictive pricing models will not be covered here), the decreasing trend can provide a benchmark against which sellers’ asking prices can be compared. If sellers consistently ask for prices significantly higher than the predicted values for similar cars, it may indicate that they are attempting to exploit buyers’ lack of information or conceal defects in the vehicles. Thus knowing price trends can better protect consumers in the lemon market as it allows them to assess the risk associated with purchasing a used car through price signals.</p>
+<p>However, if the growing difference in prices is driven by increased uncertainty and risk associated with buying used cars, it may signal a market failure that requires intervention to improve transparency and consumer protection. This widening price gap could result from a worsening lemon market problem, where buyers become increasingly wary of purchasing used cars due to concerns about hidden defects or poor quality. Therefore, there is also a need to investigate the cause of this growing price difference.</p>
+</div>
+<p>Now let’s see how these pricing trends may differ in different parts in India. <br></p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br></p>
-<p>There has been an increase in second-hand car prices till 2017 (though this may vary, eg. Bangladore and Delhi experienced increases earlier) but seems to be mostly coming down after that. Perhaps the problem of the lemon market is slowly being alleviated as the difference in first and second hand car prices are increasing.</p>
+<div style="text-align: justify;">
+<p>In Chennai, Delhi, and Jaipur, it’s notable that price trends are still on the rise. Consumers in these areas should recognize that comparing prices of second-hand cars with those in other parts of India may not be valid. Additionally, they shouldn’t be surprised if sellers continue to offer such (second-hand) models at even higher prices.</p>
+</div>
 </section>
 <section id="carbon-emissions-average-kilometers-driven-in-india" class="level1">
 <h1>2. Carbon emissions? Average kilometers driven in India</h1>
-<p>One outlier from Chennai removed</p>
+<p>For this graph, one outlier from Chennai was removed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div style="text-align: justify;">
+<p>There is a decrease in average kilometres driven over time and generally, since less distance is covered, there should be less gas emissions (though it still depends on a variety of factors).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="india_emissions.png" width="800" height="700" class="figure-img"></p>
+<figcaption class="figure-caption">Photo from <em>Our World in Data</em> on India’s Carbon Emissions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>If we were to assume ave_km_driven ≈ carbon emissions, this means that cars are becoming smaller contributors to the increase in global emissions as shown in the image since they display opposite trends. Moreover, it does not seem that CO2 emissions from cars will double by 2050 which means the policies in place, and the measure implemented by the government seem to be working.</p>
+<p>Next, here’s a shiny app to investigate this phenomenon more closely in different cities of India.</p>
+</div>
 <p><br></p>
 <iframe height="400" width="100%" frameborder="no" src="https://cc01lz-yasmineong.shinyapps.io/MyShinyApp/"> </iframe>
-<p><br></p>
+<div style="text-align: justify;">
+<p>If you click through, you can see that there is all cities show a decrease in average kilometers driven throughout the years. But upon closer inspection, different cars brands contribute differently to the average distance travelled. Depending on the fuel efficiency on the brand, more can then be derived about the true emission level generated by each one of them, which can aid the government in deciding which firms to clamp down on for emission levels.</p>
+</div>
 </section>
 <section id="preferences-and-car-usage-in-india" class="level1">
 <h1>3. Preferences and car usage in India</h1>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="data_analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><br></p>
+<p><br> Here’s bar graphs of the categorical variables of this dataset.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><br> Now, let’s zoom into car brands:</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><br></p>
-<p>Maruti seems to be the most popular car brand that Indian consumers go for. Upon further inspection into the prices of the individual car brands, we seem to see a preference for the lowest costing car (Maruti) among the top 10.</p>
+<div style="text-align: justify;">
+<p>Maruti seems to be the most popular car brand that Indian consumers go for, seeing how it has the highest count of cars owned by Indians in all the regions (in the dataset). Let’s take a closer look into why this may be so by looking at price:</p>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data_analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div style="text-align: justify;">
+<p>Upon closer examination of the prices of individual car brands, a preference for the most economical option, Maruti, is evident among the top 10. Meanwhile, brands such as Audi, BMW, and Mercedes-Benz, which command higher average prices, consequently hold a smaller market share as fewer consumers opt for them. However, their inclusion in the top 10 may suggest a significant demand among Indian consumers for luxury car brands.</p>
+<p>Next, what about do the numerical variables of this dataset tell us?</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <ol type="1">
@@ -367,7 +396,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>4. Predictors in the market</h1>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="data_analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="data_analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <ol type="1">
@@ -375,7 +404,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>There is a strong correlation between costs and power of the car –&gt; the higher the BHP, the higher the costs of the car which matches what vehicle analytics say. However, since customers in India tend to go for lower prices, producers need not create so many high-powered cars. Moreover, India’s cities are known for their traffic congestion thus smaller, less powerful engines are practical for navigating these conditions efficient.</p></li>
 <li><p>Relationship of price and engine of a car is also moderately strong. This seems to be in line with India’s taxation policies: they impose higher taxes on cars with larger engines and as a result higher BHP, making such vehicles much more unafforable.</p></li>
 </ol>
-<p>Link for reference: https://www.cars24.com/blog/what-is-bhp-in-cars/</p>
+<p><strong>Citations</strong>: <br> https://www.cars24.com/blog/what-is-bhp-in-cars/ <br> Ritchie, H., Roser, M., &amp; Rosado, P. (2020, May 11). <em>India: CO2 Country Profile</em>. Our World in Data. <a href="https://ourworldindata.org/co2/country/india#what-are-the-country-s-annual-co2-emissions">https://ourworldindata.org/co2/country/india#what-are-the-country-s-annual-co2-emissions</a></p>
 
 
 </section>

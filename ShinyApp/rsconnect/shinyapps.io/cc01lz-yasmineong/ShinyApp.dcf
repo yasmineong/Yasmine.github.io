@@ -1,12 +1,12 @@
-name: Shinyapp2
-title: Shinyapp2
+name: ShinyApp
+title: ShinyApp
 username: cc01lz-yasmineong
 account: cc01lz-yasmineong
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 11809319
-bundleId: 8515520
-url: https://cc01lz-yasmineong.shinyapps.io/Shinyapp2/
+appId: 11809501
+bundleId: 8515630
+url: https://cc01lz-yasmineong.shinyapps.io/ShinyApp/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
